@@ -1,6 +1,7 @@
 import logging
+import os
 from datetime import datetime
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Header
 from core.database import get_db
 from core.email_service import send_newsletter_confirmation
 from core.klaviyo_service import add_subscriber_to_klaviyo
@@ -48,8 +49,11 @@ async def subscribe(data: NewsletterSubscription):
 
 
 @router.get("/subscribers/")
-async def list_subscribers():
-    """Lister tous les abonnés (admin)."""
+async def list_subscribers(x_admin_key: str = Header(default="")):
+    """Lister tous les abonnés (admin protégé par clé)."""
+    admin_key = os.environ.get("ADMIN_SECRET_KEY", "")
+    if not admin_key or x_admin_key != admin_key:
+        raise HTTPException(status_code=403, detail="Accès refusé")
     try:
         db = get_db()
         subscribers = await db.newsletter_subscribers.find(

@@ -32,15 +32,17 @@ app = FastAPI(
     title="Mezzora Pizza API",
     description="Backend de commande en ligne pour Mezzora Pizza.",
     version="2.0.0",
+    docs_url=None,
+    redoc_url=None,
+    openapi_url=None,
 )
 
-# 🛡️ CORRECTION CORS : On autorise tout pour le développement local
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # On utilise "*" au lieu de settings.CORS_ORIGINS pour débloquer le navigateur
+    allow_origins=settings.CORS_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type", "Authorization"],
 )
 
 # Routes

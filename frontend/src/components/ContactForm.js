@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Send, MessageSquare, Mail, Phone, User } from 'lucide-react';
 import axios from 'axios';
 
-// URL dynamique : fonctionne depuis le PC (localhost) et depuis le téléphone (IP locale)
-const BACKEND_URL = `http://${window.location.hostname}:8001`;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || `http://${window.location.hostname}:8001`;
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({

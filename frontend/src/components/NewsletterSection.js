@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Mail, CheckCircle } from 'lucide-react';
 import axios from 'axios';
 
-const BACKEND_URL = `http://${window.location.hostname}:8001`;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || `http://${window.location.hostname}:8001`;
 
 const NewsletterSection = () => {
   const [form, setForm] = useState({ prenom: '', email: '' });
