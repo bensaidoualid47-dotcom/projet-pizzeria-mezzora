@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from fastapi import APIRouter, HTTPException, Header
 from core.database import get_db
-from core.email_service import send_newsletter_confirmation
+from core.email_service import send_newsletter_confirmation, send_newsletter_notification
 from core.klaviyo_service import add_subscriber_to_klaviyo
 from models.newsletter import NewsletterSubscription
 
@@ -36,6 +36,12 @@ async def subscribe(data: NewsletterSubscription):
         await send_newsletter_confirmation(data.email, data.prenom)
     except Exception as e:
         logger.error(f"Erreur email confirmation newsletter : {e}")
+
+    # Notifier le restaurateur
+    try:
+        await send_newsletter_notification(data.email, data.prenom)
+    except Exception as e:
+        logger.error(f"Erreur notification newsletter restaurateur : {e}")
 
     # Synchroniser avec Klaviyo (en arrière-plan, ne bloque pas la réponse)
     try:

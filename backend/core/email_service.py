@@ -172,6 +172,35 @@ async def send_newsletter_confirmation(email: str, prenom: str = "") -> bool:
         return False
 
 
+async def send_newsletter_notification(email: str, prenom: str = "") -> bool:
+    """Notification envoyée au restaurateur quand quelqu'un s'inscrit à la newsletter."""
+    if not settings.RESEND_API_KEY or not settings.RESTAURANT_EMAIL:
+        return False
+
+    resend.api_key = settings.RESEND_API_KEY
+    body = f"""
+    <h2 style="color:#16a34a;">📧 Nouvelle inscription newsletter !</h2>
+    <div style="background:#f9f9f9;border-radius:6px;padding:20px;margin:20px 0;">
+      <p><strong>Prénom :</strong> {prenom or 'Non renseigné'}</p>
+      <p><strong>Email :</strong> {email}</p>
+    </div>
+    <p>Cet abonné a été automatiquement ajouté à Klaviyo.</p>
+    """
+
+    try:
+        params = {
+            "from": f"Mezzora Pizza <{settings.SENDER_EMAIL}>",
+            "to": [settings.RESTAURANT_EMAIL],
+            "subject": f"📧 Nouvelle inscription newsletter — {email}",
+            "html": _base_template("Nouvelle inscription newsletter", body),
+        }
+        await asyncio.to_thread(resend.Emails.send, params)
+        return True
+    except Exception as e:
+        logger.error(f"Erreur notification newsletter : {e}")
+        return False
+
+
 async def send_contact_email(contact) -> bool:
     """Email de contact envoyé au restaurateur."""
     if not settings.RESEND_API_KEY or not settings.RESTAURANT_EMAIL:
