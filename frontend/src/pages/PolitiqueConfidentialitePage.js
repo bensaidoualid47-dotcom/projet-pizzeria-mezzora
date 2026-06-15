@@ -59,7 +59,7 @@ const PolitiqueConfidentialitePage = () => {
           <section>
             <h2 className="text-2xl font-bold mb-3">Contact</h2>
             <p>
-              Pour toute demande relative à vos données personnelles, contactez-nous à Saidin7@live.fr.
+              Pour toute demande relative à vos données personnelles, contactez-nous à mezzora92500@gmail.com.
             </p>
           </section>
         </div>

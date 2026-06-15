@@ -17,7 +17,7 @@ const MentionsLegalesPage = () => {
             <p className="mb-2">4-6 Avenue du Président Georges Pompidou</p>
             <p className="mb-2">92500 Rueil-Malmaison</p>
             <p className="mb-2">Téléphone : 01.47.49.49.04</p>
-            <p className="mb-2">Email : Saidin7@live.fr</p>
+            <p className="mb-2">Email : mezzora92500@gmail.com</p>
           </section>
 
           <section className="mb-8">

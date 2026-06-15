@@ -187,11 +187,11 @@ const AllergensPage = () => {
                 01.47.49.49.04
               </a>
               <a
-                href="mailto:Saidin7@live.fr"
+                href="mailto:mezzora92500@gmail.com"
                 className="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 px-5 py-3 rounded-xl font-bold text-sm hover:bg-gray-50 transition"
               >
                 <Mail className="w-4 h-4" />
-                Saidin7@live.fr
+                mezzora92500@gmail.com
               </a>
             </div>
           </div>
