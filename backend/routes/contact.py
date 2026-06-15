@@ -1,15 +1,17 @@
 import logging
 from datetime import datetime
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from core.database import get_db
 from core.email_service import send_contact_email
 from models.contact import ContactMessage
+from server import limiter
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/contact", tags=["contact"])
 
 @router.post("/")
-async def submit_contact(contact: ContactMessage):
+@limiter.limit("5/minute")
+async def submit_contact(request: Request, contact: ContactMessage):
     # ÉTAPE A : On essaie de sauvegarder, mais on ne bloque pas si MongoDB est éteint
     try:
         db = get_db()

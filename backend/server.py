@@ -6,10 +6,17 @@ Lancer avec :
     uvicorn server:app --reload --port 8001
 """
 import logging
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from starlette.middleware.cors import CORSMiddleware
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
 from core.config import settings
+
+limiter = Limiter(key_func=get_remote_address)
+
 from core.database import close_connection
 from routes.orders import router as orders_router
 from routes.contact import router as contact_router
@@ -36,6 +43,9 @@ app = FastAPI(
     redoc_url=None,
     openapi_url=None,
 )
+
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.add_middleware(
     CORSMiddleware,

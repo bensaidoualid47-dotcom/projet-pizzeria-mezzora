@@ -1,56 +1,57 @@
 import logging
 import os
 from datetime import datetime
-from fastapi import APIRouter, HTTPException, Header
+from fastapi import APIRouter, HTTPException, Header, Request
 from core.database import get_db
 from core.email_service import send_newsletter_confirmation, send_newsletter_notification
 from core.klaviyo_service import add_subscriber_to_klaviyo
 from models.newsletter import NewsletterSubscription
+from server import limiter
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/newsletter", tags=["newsletter"])
 
 
 @router.post("/subscribe/")
-async def subscribe(data: NewsletterSubscription):
+@limiter.limit("3/minute")
+async def subscribe(request: Request, data: NewsletterSubscription):
     """Inscription à la newsletter."""
+    already_exists = False
     try:
         db = get_db()
-        # Vérifier si l'email est déjà inscrit
         existing = await db.newsletter_subscribers.find_one({"email": data.email})
         if existing:
-            return {"status": "already_subscribed", "message": "Vous êtes déjà inscrit !"}
+            already_exists = True
 
-        # Sauvegarder le nouvel abonné
-        await db.newsletter_subscribers.insert_one({
-            "email": data.email,
-            "prenom": data.prenom,
-            "subscribed_at": datetime.utcnow(),
-            "active": True,
-        })
+        if not already_exists:
+            await db.newsletter_subscribers.insert_one({
+                "email": data.email,
+                "prenom": data.prenom,
+                "subscribed_at": datetime.utcnow(),
+                "active": True,
+            })
     except Exception:
         logger.warning("MongoDB absent : abonné non sauvegardé en base, on continue...")
 
-    # Envoyer l'email de confirmation
-    try:
-        await send_newsletter_confirmation(data.email, data.prenom)
-    except Exception as e:
-        logger.error(f"Erreur email confirmation newsletter : {e}")
+    if not already_exists:
+        try:
+            await send_newsletter_confirmation(data.email, data.prenom)
+        except Exception as e:
+            logger.error(f"Erreur email confirmation newsletter : {e}")
 
-    # Notifier le restaurateur
-    try:
-        await send_newsletter_notification(data.email, data.prenom)
-    except Exception as e:
-        logger.error(f"Erreur notification newsletter restaurateur : {e}")
+        try:
+            await send_newsletter_notification(data.email, data.prenom)
+        except Exception as e:
+            logger.error(f"Erreur notification newsletter restaurateur : {e}")
 
-    # Synchroniser avec Klaviyo (en arrière-plan, ne bloque pas la réponse)
-    try:
-        klaviyo_ok = await add_subscriber_to_klaviyo(data.email, data.prenom)
-        if klaviyo_ok:
-            logger.info(f"Abonné {data.email} synchronisé avec Klaviyo ✅")
-    except Exception as e:
-        logger.error(f"Erreur synchronisation Klaviyo : {e}")
+        try:
+            klaviyo_ok = await add_subscriber_to_klaviyo(data.email, data.prenom)
+            if klaviyo_ok:
+                logger.info(f"Abonné {data.email} synchronisé avec Klaviyo ✅")
+        except Exception as e:
+            logger.error(f"Erreur synchronisation Klaviyo : {e}")
 
+    # Toujours retourner succès (évite l'énumération d'emails)
     return {"status": "success", "message": "Inscription confirmée !"}
 
 
