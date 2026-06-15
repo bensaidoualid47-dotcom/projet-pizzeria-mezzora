@@ -137,6 +137,7 @@ export const desserts = [...dessertsPatisseries, ...dessertsGlaces];
 // BOISSONS
 export const boissons = [
   // Canettes / Bouteilles 33cl - 1.60€
+  { id: 'dada-zero', name: 'Dada Zéro', price: 1.6, image: '/images/menu/Dada-Cola-Zero-33cl.webp' },
   { id: 'dada-cola', name: 'Dada Cola', price: 1.6, image: '/images/menu/dada_cola-removebg.png' },
   { id: 'dada-cerise', name: 'Dada Cerise', price: 1.6, image: '/images/menu/dada_cerise-removebg.png' },
   { id: 'dada-cherry', name: 'Dada Cherry', price: 1.6, image: '/images/menu/dada_cherry-removebg.png' },
