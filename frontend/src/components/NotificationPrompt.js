@@ -6,7 +6,7 @@ const NotificationPrompt = () => {
   const [status, setStatus] = useState('idle'); // idle | loading | success | denied
 
   useEffect(() => {
-    // Si permission déjà accordée, récupérer le token silencieusement
+    if (!('Notification' in window) || !messaging) return;
     if (Notification.permission === 'granted') {
       getToken(messaging, { vapidKey: VAPID_KEY })
         .then(token => { if (token) console.log('🔑 FCM Token:', token); })
@@ -15,15 +15,14 @@ const NotificationPrompt = () => {
   }, []);
 
   useEffect(() => {
-    // Gérer les notifs quand la page est ouverte (premier plan)
+    if (!messaging) return;
     const unsubscribe = onMessage(messaging, (payload) => {
+      if (!('Notification' in window) || Notification.permission !== 'granted') return;
       const { title, body } = payload.notification || {};
-      if (Notification.permission === 'granted') {
-        new Notification(title || 'Mezzora Pizza', {
-          body: body || '',
-          icon: '/logo192.png',
-        });
-      }
+      new Notification(title || 'Mezzora Pizza', {
+        body: body || '',
+        icon: '/logo192.png',
+      });
     });
     return () => unsubscribe();
   }, []);
