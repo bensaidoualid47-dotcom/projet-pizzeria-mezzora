@@ -6,7 +6,7 @@ from core.database import get_db
 from core.email_service import send_newsletter_confirmation, send_newsletter_notification
 from core.klaviyo_service import add_subscriber_to_klaviyo
 from models.newsletter import NewsletterSubscription
-from server import limiter
+from core.limiter import limiter
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/newsletter", tags=["newsletter"])

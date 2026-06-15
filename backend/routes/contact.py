@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Request
 from core.database import get_db
 from core.email_service import send_contact_email
 from models.contact import ContactMessage
-from server import limiter
+from core.limiter import limiter
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/contact", tags=["contact"])
