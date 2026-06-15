@@ -1,0 +1,89 @@
+/* Mezzora Pizza Custom Styles */
+
+.hero-section {
+  background-color: #0f172a;
+}
+
+.hero-title {
+  font-family: 'Crimson Text', 'Times New Roman', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+.hero-subtitle {
+  font-family: 'Crimson Text', 'Times New Roman', serif;
+}
+
+.section-title {
+  font-family: 'Crimson Text', 'Times New Roman', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.offer-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 15px 40px rgba(34, 197, 94, 0.4);
+  }
+}
+
+.cta-button {
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+}
+
+.cta-button:hover {
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.6);
+}
+
+.menu-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+}
+
+.primary-bg {
+  background-color: #ECEC75;
+}
+
+.card-bg {
+  background-color: #e6e67c;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom button transitions */
+button {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Input focus styles */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}

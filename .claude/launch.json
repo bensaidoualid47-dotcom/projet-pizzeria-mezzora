@@ -1,0 +1,15 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start", "--prefix", "frontend"],
+      "port": 8001,
+      "env": {
+        "PORT": "8001",
+        "BROWSER": "none"
+      }
+    }
+  ]
+}
