@@ -64,8 +64,7 @@ async def send_customer_confirmation(customer_email: str, order: dict) -> bool:
     items_html = _build_items_html(order.get("items", []))
     delivery_label = "Livraison à domicile" if order.get("deliveryMethod") == "livraison" else "À emporter"
 
-    # Sécurité sur l'expéditeur pour le mode test
-    sender = "Mezzora Pizza <onboarding@resend.dev>"
+    sender = f"Mezzora Pizza <{settings.SENDER_EMAIL}>"
 
     body = f"""
     <h2 style="color:#c0392b;">Merci pour votre commande !</h2>
@@ -124,7 +123,7 @@ async def send_restaurant_notification(order: dict) -> bool:
 
     try:
         params = {
-            "from": "Mezzora Pizza <onboarding@resend.dev>",
+            "from": f"Mezzora Pizza <{settings.SENDER_EMAIL}>",
             "to": [settings.RESTAURANT_EMAIL],
             "subject": f"🍕 NOUVELLE COMMANDE #{order.get('order_id')}",
             "html": _base_template("Notification Restaurant", body),
@@ -160,7 +159,7 @@ async def send_newsletter_confirmation(email: str, prenom: str = "") -> bool:
 
     try:
         params = {
-            "from": "Mezzora Pizza <onboarding@resend.dev>",
+            "from": f"Mezzora Pizza <{settings.SENDER_EMAIL}>",
             "to": [email],
             "subject": "🍕 Bienvenue dans la famille Mezzora !",
             "html": _base_template("Bienvenue chez Mezzora Pizza", body),
@@ -192,7 +191,7 @@ async def send_contact_email(contact) -> bool:
     msg_attr = contact.message if hasattr(contact, 'message') else contact.get('message', '')
 
     subject_prefix = subject_map.get(subj_attr, "📧 Nouveau message")
-    sender = "Mezzora Contact <onboarding@resend.dev>"
+    sender = f"Mezzora Contact <{settings.SENDER_EMAIL}>"
 
     body = f"""
     <h2 style="color:#c0392b;">{subject_prefix}</h2>
