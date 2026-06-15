@@ -56,7 +56,8 @@ async def subscribe(request: Request, data: NewsletterSubscription):
 
 
 @router.get("/subscribers/")
-async def list_subscribers(x_admin_key: str = Header(default="")):
+@limiter.limit("10/hour")
+async def list_subscribers(request: Request, x_admin_key: str = Header(default="")):
     """Lister tous les abonnés (admin protégé par clé)."""
     admin_key = os.environ.get("ADMIN_SECRET_KEY", "")
     if not admin_key or x_admin_key != admin_key:
