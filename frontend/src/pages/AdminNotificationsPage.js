@@ -24,11 +24,8 @@ export default function AdminNotificationsPage() {
     try {
       const res = await fetch(`${BACKEND_URL}/api/notifications/send`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-admin-key': key,
-        },
-        body: JSON.stringify({ title: title.trim(), body: body.trim(), url }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: title.trim(), body: body.trim(), url, admin_key: key }),
       });
       const data = await res.json();
       if (res.ok) {

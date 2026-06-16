@@ -1,7 +1,7 @@
 import logging
 import os
 from datetime import datetime
-from fastapi import APIRouter, HTTPException, Header, Request
+from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from firebase_admin import messaging
 from core.database import get_db
@@ -20,6 +20,7 @@ class PushPayload(BaseModel):
     title: str
     body: str
     url: str = "/"
+    admin_key: str = ""
 
 
 @router.post("/register")
@@ -42,10 +43,10 @@ async def register_token(request: Request, data: TokenRegister):
 
 @router.post("/send")
 @limiter.limit("10/hour")
-async def send_push(request: Request, payload: PushPayload, x_admin_key: str = Header(default="")):
+async def send_push(request: Request, payload: PushPayload):
     """Envoie une notification push à tous les abonnés actifs (admin)."""
     admin_key = os.environ.get("ADMIN_SECRET_KEY", "")
-    if not admin_key or x_admin_key != admin_key:
+    if not admin_key or payload.admin_key != admin_key:
         raise HTTPException(status_code=403, detail="Accès refusé")
 
     app = get_firebase_app()
