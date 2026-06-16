@@ -47,11 +47,10 @@ const NotificationPrompt = () => {
         const token = await getToken(messaging, { vapidKey: VAPID_KEY });
         if (token) {
           const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-          fetch(`${backendUrl}/api/notifications/register`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token }),
-          }).catch(() => {});
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', `${backendUrl}/api/notifications/register`);
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send(JSON.stringify({ token }));
         }
         setStatus('success');
         localStorage.setItem('notif_prompt_dismissed', '1');
