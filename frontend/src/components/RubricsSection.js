@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, X, ShoppingBag, Truck, Zap, Star } from 'lucide-react';
+import { Gift, ArrowRight, X, ShoppingBag, Truck, Zap, Star } from 'lucide-react';
 import MenuSection from './MenuSection';
 import FormulesMidi from './FormulesMidi';
 
@@ -48,11 +48,17 @@ const RubricsSection = ({ onRubricSelect, activeRubric, onCloseMenu }) => {
                 >
                   🍕 Menu
                 </button>
-                <button 
-                  onClick={() => onRubricSelect('offres-midi')} 
+                <button
+                  onClick={() => onRubricSelect('offres-midi')}
                   className={`px-4 lg:px-6 py-2 rounded-full text-xs lg:text-sm font-bold transition-all whitespace-nowrap ${activeRubric === 'offres-midi' ? 'bg-white shadow-md text-yellow-600' : 'text-gray-500 hover:text-gray-700'}`}
                 >
                   ⏰ Formules
+                </button>
+                <button
+                  onClick={() => onRubricSelect('offres')}
+                  className={`px-4 lg:px-6 py-2 rounded-full text-xs lg:text-sm font-bold transition-all whitespace-nowrap ${activeRubric === 'offres' ? 'bg-white shadow-md text-red-600' : 'text-gray-500 hover:text-gray-700'}`}
+                >
+                  🎁 Offres
                 </button>
               </div>
               <div className="w-6 lg:w-10"></div> 
@@ -219,7 +225,7 @@ const RubricsSection = ({ onRubricSelect, activeRubric, onCloseMenu }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
           {/* Mezzora MENU */}
           <button
             onClick={() => onRubricSelect('menu')}
@@ -238,7 +244,7 @@ const RubricsSection = ({ onRubricSelect, activeRubric, onCloseMenu }) => {
                   <span className="text-3xl lg:text-4xl">🍕</span>
                 </div>
                 <h3 className="text-3xl lg:text-5xl font-black mb-2 text-center tracking-tight">
-                  Mezzora<br />MENU
+                  MENU
                 </h3>
                 <div className="flex justify-center mt-6 lg:mt-8">
                   <span className="bg-green-600 text-white px-6 py-3 rounded-full text-xs lg:text-sm font-bold inline-flex items-center gap-2 uppercase tracking-wide">
@@ -267,10 +273,41 @@ const RubricsSection = ({ onRubricSelect, activeRubric, onCloseMenu }) => {
                   <span className="text-3xl lg:text-4xl">⏰</span>
                 </div>
                 <h3 className="text-3xl lg:text-5xl font-black mb-2 text-center tracking-tight">
-                  Mezzora<br />OFFRES MIDI
+                  OFFRES MIDI
                 </h3>
                 <div className="flex justify-center mt-6 lg:mt-8">
                   <span className="bg-yellow-500 text-black px-6 py-3 rounded-full text-xs lg:text-sm font-bold inline-flex items-center gap-2 uppercase tracking-wide">
+                    Découvrir <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </button>
+
+          {/* Nos OFFRES */}
+          <button
+            onClick={() => onRubricSelect('offres')}
+            className="relative overflow-hidden rounded-[2rem] shadow-xl transition-all duration-500 transform hover:scale-[1.03] hover:shadow-2xl group h-[400px] lg:h-[500px]"
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+              style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1565299624946-b28f40a0ae38)' }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
+            </div>
+            <div className="relative h-full flex flex-col justify-end p-6 lg:p-10 text-white">
+              <div className="absolute top-6 right-6 bg-red-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg animate-pulse">
+                Exclusif
+              </div>
+              <div className="transform transition-transform duration-500 group-hover:translate-y-[-10px]">
+                <div className="bg-white/20 backdrop-blur-md rounded-2xl w-16 h-16 lg:w-20 lg:h-20 flex items-center justify-center mb-6 mx-auto shadow-lg border border-white/30">
+                  <Gift className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
+                </div>
+                <h3 className="text-3xl lg:text-5xl font-black mb-2 text-center tracking-tight">
+                  NOS OFFRES
+                </h3>
+                <div className="flex justify-center mt-6 lg:mt-8">
+                  <span className="bg-red-600 text-white px-6 py-3 rounded-full text-xs lg:text-sm font-bold inline-flex items-center gap-2 uppercase tracking-wide">
                     Découvrir <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
                   </span>
                 </div>
