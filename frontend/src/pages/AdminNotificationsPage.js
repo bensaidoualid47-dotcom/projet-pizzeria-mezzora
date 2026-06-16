@@ -37,9 +37,9 @@ export default function AdminNotificationsPage() {
         setStatus('error');
         setResult({ message: data.detail || 'Erreur inconnue' });
       }
-    } catch {
+    } catch (err) {
       setStatus('error');
-      setResult({ message: 'Impossible de contacter le serveur' });
+      setResult({ message: err.message || 'Impossible de contacter le serveur' });
     }
   };
 
