@@ -16,31 +16,46 @@ export default function AdminNotificationsPage() {
     if (key.trim()) setAuthenticated(true);
   };
 
-  const handleSend = async (e) => {
+  const handleSend = (e) => {
     e.preventDefault();
     if (!title.trim() || !body.trim()) return;
     setStatus('sending');
     setResult(null);
-    try {
-      const res = await fetch(`${BACKEND_URL}/api/notifications/send`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: title.trim(), body: body.trim(), url, admin_key: key }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setStatus('success');
-        setResult(data);
-        setTitle('');
-        setBody('');
-      } else {
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `${BACKEND_URL}/api/notifications/send`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.timeout = 15000;
+
+    xhr.onload = () => {
+      try {
+        const data = JSON.parse(xhr.responseText);
+        if (xhr.status >= 200 && xhr.status < 300) {
+          setStatus('success');
+          setResult(data);
+          setTitle('');
+          setBody('');
+        } else {
+          setStatus('error');
+          setResult({ message: data.detail || `Erreur ${xhr.status}` });
+        }
+      } catch {
         setStatus('error');
-        setResult({ message: data.detail || 'Erreur inconnue' });
+        setResult({ message: `Réponse invalide (${xhr.status})` });
       }
-    } catch (err) {
+    };
+
+    xhr.onerror = () => {
       setStatus('error');
-      setResult({ message: err.message || 'Impossible de contacter le serveur' });
-    }
+      setResult({ message: 'Impossible de contacter le serveur' });
+    };
+
+    xhr.ontimeout = () => {
+      setStatus('error');
+      setResult({ message: 'Délai dépassé — réessaie dans quelques secondes' });
+    };
+
+    xhr.send(JSON.stringify({ title: title.trim(), body: body.trim(), url, admin_key: key }));
   };
 
   return (
