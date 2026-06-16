@@ -8,6 +8,7 @@ import PolitiqueConfidentialitePage from "./pages/PolitiqueConfidentialitePage";
 import CookiesPage from "./pages/CookiesPage";
 import CookieConsentBanner from "./components/CookieConsentBanner";
 import AllergensPage from "./pages/AllergensPage";
+import AdminNotificationsPage from "./pages/AdminNotificationsPage";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import NotificationPrompt from "./components/NotificationPrompt";
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/politique-confidentialite" element={<PolitiqueConfidentialitePage />} />
         <Route path="/cookies" element={<CookiesPage />} />
         <Route path="/allergenes" element={<AllergensPage />} />
+        <Route path="/admin/notifications" element={<AdminNotificationsPage />} />
       </Routes>
       <CookieConsentBanner />
       <ScrollToTopButton />
