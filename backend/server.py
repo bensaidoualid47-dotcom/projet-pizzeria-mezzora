@@ -20,6 +20,8 @@ from core.database import close_connection
 from routes.orders import router as orders_router
 from routes.contact import router as contact_router
 from routes.newsletter import router as newsletter_router
+from routes.notifications import router as notifications_router
+from core.firebase_admin_sdk import get_firebase_app
 
 # ──────────────────────────────────────────────
 #  Logging
@@ -69,6 +71,7 @@ async def security_headers(request: Request, call_next):
 app.include_router(orders_router)
 app.include_router(contact_router)
 app.include_router(newsletter_router)
+app.include_router(notifications_router)
 
 
 # ──────────────────────────────────────────────
@@ -83,6 +86,11 @@ async def health_check():
 # ──────────────────────────────────────────────
 #  Fermeture propre de MongoDB
 # ──────────────────────────────────────────────
+@app.on_event("startup")
+async def startup():
+    get_firebase_app()
+
+
 @app.on_event("shutdown")
 async def shutdown():
     await close_connection()

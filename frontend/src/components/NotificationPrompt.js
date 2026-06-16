@@ -44,7 +44,15 @@ const NotificationPrompt = () => {
     try {
       const permission = await Notification.requestPermission();
       if (permission === 'granted') {
-        await getToken(messaging, { vapidKey: VAPID_KEY });
+        const token = await getToken(messaging, { vapidKey: VAPID_KEY });
+        if (token) {
+          const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+          fetch(`${backendUrl}/api/notifications/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token }),
+          }).catch(() => {});
+        }
         setStatus('success');
         localStorage.setItem('notif_prompt_dismissed', '1');
         setTimeout(() => setVisible(false), 2500);
