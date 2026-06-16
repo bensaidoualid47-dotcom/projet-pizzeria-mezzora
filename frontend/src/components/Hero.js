@@ -39,15 +39,15 @@ const Hero = () => {
           position: absolute;
           inset: 0;
           background-color: #111;
-          background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%),
-                      url('/images/mario-hero.svg') center center / cover no-repeat;
+          background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%),
+                      url('/images/menu/pizza-hero.jpg') center center / cover no-repeat;
         }
 
         @media (max-width: 768px) {
           .hero-bg {
             background-color: #111;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.65) 100%),
-                        url('/images/mario-hero.svg') center center / cover no-repeat;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.75) 100%),
+                        url('/images/menu/pizza-hero.jpg') center 60% / cover no-repeat;
           }
         }
 
