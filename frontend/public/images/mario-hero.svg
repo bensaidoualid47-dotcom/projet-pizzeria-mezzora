@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <!-- Sky -->
+  <rect width="1200" height="800" fill="#0d1b4b"/>
+
+  <!-- Moon -->
+  <circle cx="160" cy="110" r="65" fill="#FFF9C0"/>
+  <circle cx="138" cy="90" r="65" fill="#0d1b4b"/>
+
+  <!-- Stars -->
+  <circle cx="50"  cy="40"  r="2.5" fill="#fff" opacity=".8"/>
+  <circle cx="140" cy="25"  r="1.8" fill="#fff" opacity=".7"/>
+  <circle cx="280" cy="60"  r="2"   fill="#fff" opacity=".9"/>
+  <circle cx="370" cy="18"  r="1.5" fill="#fff" opacity=".6"/>
+  <circle cx="480" cy="50"  r="2.5" fill="#fff" opacity=".8"/>
+  <circle cx="590" cy="30"  r="2"   fill="#fff" opacity=".7"/>
+  <circle cx="700" cy="70"  r="1.8" fill="#fff" opacity=".9"/>
+  <circle cx="800" cy="15"  r="2"   fill="#fff" opacity=".6"/>
+  <circle cx="920" cy="45"  r="2.5" fill="#fff" opacity=".8"/>
+  <circle cx="1030" cy="25" r="1.8" fill="#fff" opacity=".7"/>
+  <circle cx="1120" cy="55" r="2"   fill="#fff" opacity=".9"/>
+  <circle cx="60"  cy="130" r="1.5" fill="#fff" opacity=".5"/>
+  <circle cx="320" cy="140" r="2"   fill="#fff" opacity=".6"/>
+  <circle cx="640" cy="120" r="1.8" fill="#fff" opacity=".5"/>
+  <circle cx="1080" cy="100" r="2"  fill="#fff" opacity=".7"/>
+
+  <!-- Ground -->
+  <rect x="0" y="710" width="1200" height="90" fill="#7C4B22"/>
+  <rect x="0" y="710" width="1200" height="8"  fill="#996030"/>
+  <!-- Brick lines -->
+  <line x1="0"   y1="740" x2="1200" y2="740" stroke="#5C3A15" stroke-width="3"/>
+  <line x1="0"   y1="770" x2="1200" y2="770" stroke="#5C3A15" stroke-width="3"/>
+  <line x1="60"  y1="710" x2="60"  y2="800" stroke="#5C3A15" stroke-width="3"/>
+  <line x1="180" y1="725" x2="180" y2="740" stroke="#5C3A15" stroke-width="3"/>
+  <line x1="300" y1="710" x2="300" y2="740" stroke="#5C3A15" stroke-width="3"/>
+  <line x1="420" y1="725" x2="420" y2="740" stroke="#5C3A15" stroke-width="3"/>
+  <line x1="540" y1="710" x2="540" y2="740" stroke="#5C3A15" stroke-width="3"/>
+  <line x1="120" y1="740" x2="120" y2="800" stroke="#5C3A15" stroke-width="3"/>
+  <line x1="240" y1="740" x2="240" y2="800" stroke="#5C3A15" stroke-width="3"/>
+  <line x1="360" y1="740" x2="360" y2="800" stroke="#5C3A15" stroke-width="3"/>
+
+  <!-- Hill left -->
+  <ellipse cx="120" cy="715" rx="200" ry="90" fill="#00AA44"/>
+  <ellipse cx="120" cy="715" rx="170" ry="70" fill="#00CC44"/>
+  <!-- Hill right -->
+  <ellipse cx="1090" cy="715" rx="200" ry="90" fill="#00AA44"/>
+  <ellipse cx="1090" cy="715" rx="170" ry="70" fill="#00CC44"/>
+
+  <!-- Pipe left -->
+  <rect x="50" y="590" width="90" height="120" fill="#00AA00"/>
+  <rect x="36" y="572" width="118" height="26" rx="6" fill="#00CC00"/>
+  <rect x="62" y="590" width="14" height="120" fill="#00CC00" opacity=".35"/>
+
+  <!-- Question block -->
+  <rect x="460" y="460" width="75" height="75" rx="9" fill="#C87010"/>
+  <rect x="464" y="464" width="67" height="67" rx="7" fill="#E89028"/>
+  <rect x="464" y="464" width="67" height="10" rx="4" fill="#F0A840" opacity=".5"/>
+  <text x="497" y="516" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="40" font-weight="900" fill="#994400">?</text>
+
+  <!-- Coin above block -->
+  <ellipse cx="497" cy="415" rx="22" ry="22" fill="#FFD700"/>
+  <ellipse cx="497" cy="415" rx="16" ry="16" fill="#FFC000"/>
+  <ellipse cx="497" cy="415" rx="8"  ry="8"  fill="#FFD700"/>
+
+  <!-- Brick blocks top right -->
+  <rect x="680" y="320" width="70" height="70" rx="5" fill="#C87010"/>
+  <rect x="683" y="323" width="64" height="64" rx="3" fill="#E89028"/>
+  <rect x="683" y="323" width="64" height="10" fill="#F0A840" opacity=".4"/>
+  <line x1="683" y1="355" x2="747" y2="355" stroke="#C87010" stroke-width="3"/>
+  <line x1="715" y1="323" x2="715" y2="387" stroke="#C87010" stroke-width="3"/>
+
+  <rect x="760" y="320" width="70" height="70" rx="5" fill="#C87010"/>
+  <rect x="763" y="323" width="64" height="64" rx="3" fill="#E89028"/>
+  <rect x="763" y="323" width="64" height="10" fill="#F0A840" opacity=".4"/>
+  <line x1="763" y1="355" x2="827" y2="355" stroke="#C87010" stroke-width="3"/>
+  <line x1="795" y1="323" x2="795" y2="387" stroke="#C87010" stroke-width="3"/>
+
+  <!-- ===== MARIO CHARACTER (centered at x=900, bottom at y=705) ===== -->
+  <!-- Shadow -->
+  <ellipse cx="900" cy="714" rx="75" ry="16" fill="#000" opacity=".35"/>
+
+  <!-- BOOTS -->
+  <rect x="828" y="640" width="72" height="70" rx="14" fill="#6B3A1F"/>
+  <rect x="912" y="640" width="72" height="70" rx="14" fill="#6B3A1F"/>
+  <rect x="836" y="634" width="56" height="22" rx="6" fill="#8B5030"/>
+  <rect x="918" y="634" width="56" height="22" rx="6" fill="#8B5030"/>
+
+  <!-- LEGS (skin visible between overalls & boots) -->
+  <rect x="840" y="578" width="52" height="78" fill="#FFA347"/>
+  <rect x="920" y="578" width="52" height="78" fill="#FFA347"/>
+
+  <!-- OVERALL STRAPS -->
+  <rect x="858" y="380" width="38" height="90" rx="8" fill="#0055AA"/>
+  <rect x="916" y="380" width="38" height="90" rx="8" fill="#0055AA"/>
+
+  <!-- OVERALLS BODY -->
+  <rect x="815" y="440" width="180" height="195" rx="22" fill="#0055AA"/>
+
+  <!-- SHIRT (red, visible on sides) -->
+  <rect x="804" y="425" width="50" height="200" rx="15" fill="#E52521"/>
+  <rect x="957" y="425" width="50" height="200" rx="15" fill="#E52521"/>
+
+  <!-- LEFT ARM -->
+  <rect x="722" y="440" width="95" height="55" rx="22" fill="#E52521"/>
+  <!-- RIGHT ARM -->
+  <rect x="993" y="440" width="95" height="55" rx="22" fill="#E52521"/>
+
+  <!-- WHITE GLOVES -->
+  <ellipse cx="726" cy="508" rx="38" ry="32" fill="#fff"/>
+  <ellipse cx="1085" cy="508" rx="38" ry="32" fill="#fff"/>
+  <!-- Glove fingers -->
+  <rect x="700" y="488" width="20" height="38" rx="9" fill="#fff"/>
+  <rect x="722" y="483" width="20" height="42" rx="9" fill="#fff"/>
+  <rect x="744" y="487" width="20" height="38" rx="9" fill="#fff"/>
+  <rect x="1062" y="488" width="20" height="38" rx="9" fill="#fff"/>
+  <rect x="1084" y="483" width="20" height="42" rx="9" fill="#fff"/>
+  <rect x="1106" y="487" width="20" height="38" rx="9" fill="#fff"/>
+
+  <!-- OVERALL BUCKLES -->
+  <rect x="864" y="388" width="26" height="16" rx="4" fill="#FFD700"/>
+  <rect x="920" y="388" width="26" height="16" rx="4" fill="#FFD700"/>
+
+  <!-- NECK -->
+  <rect x="872" y="355" width="68" height="60" fill="#FFA347"/>
+
+  <!-- HEAD -->
+  <ellipse cx="902" cy="285" rx="108" ry="116" fill="#FFA347"/>
+
+  <!-- EARS -->
+  <ellipse cx="794" cy="290" rx="24" ry="26" fill="#FFA347"/>
+  <ellipse cx="1010" cy="290" rx="24" ry="26" fill="#FFA347"/>
+
+  <!-- EYES -->
+  <ellipse cx="858" cy="255" rx="24" ry="22" fill="#fff"/>
+  <ellipse cx="861" cy="258" rx="16" ry="16" fill="#000"/>
+  <ellipse cx="865" cy="252" rx="6" ry="6" fill="#fff"/>
+
+  <ellipse cx="946" cy="255" rx="24" ry="22" fill="#fff"/>
+  <ellipse cx="943" cy="258" rx="16" ry="16" fill="#000"/>
+  <ellipse cx="947" cy="252" rx="6" ry="6" fill="#fff"/>
+
+  <!-- NOSE -->
+  <ellipse cx="902" cy="308" rx="34" ry="24" fill="#E8905A"/>
+
+  <!-- MUSTACHE -->
+  <ellipse cx="855" cy="342" rx="42" ry="24" fill="#6B3A1F"/>
+  <ellipse cx="952" cy="342" rx="42" ry="24" fill="#6B3A1F"/>
+  <!-- Gap between mustache sides -->
+  <ellipse cx="902" cy="342" rx="14" ry="24" fill="#FFA347"/>
+
+  <!-- HAIR below hat -->
+  <rect x="820" y="177" width="168" height="28" rx="6" fill="#6B3A1F"/>
+
+  <!-- HAT CROWN -->
+  <ellipse cx="902" cy="145" rx="124" ry="80" fill="#E52521"/>
+  <!-- HAT BRIM -->
+  <rect x="786" y="178" width="236" height="30" rx="8" fill="#E52521"/>
+  <rect x="786" y="178" width="236" height="12" rx="5" fill="#CC0000"/>
+
+  <!-- M on hat -->
+  <text x="902" y="176" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-size="58" font-weight="900" fill="#fff" letter-spacing="-2">M</text>
+</svg>
