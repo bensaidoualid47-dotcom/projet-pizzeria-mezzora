@@ -53,15 +53,16 @@ async def send_push(request: Request, payload: PushPayload):
     if not app:
         raise HTTPException(status_code=503, detail="Firebase non configuré")
 
+    tokens = []
     try:
         db = get_db()
         docs = await db.fcm_tokens.find({"active": True}, {"_id": 0, "token": 1}).to_list(length=5000)
         tokens = [d["token"] for d in docs]
-    except Exception:
-        raise HTTPException(status_code=503, detail="Base de données non disponible")
+    except Exception as e:
+        logger.warning(f"MongoDB non disponible pour récupérer les tokens : {e}")
 
     if not tokens:
-        return {"status": "ok", "sent": 0, "message": "Aucun abonné"}
+        return {"status": "ok", "sent": 0, "message": "Aucun abonné pour l'instant"}
 
     # Firebase envoie par lots de 500 max
     success_count = 0
